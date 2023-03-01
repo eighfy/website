@@ -1,6 +1,6 @@
 import React from "react"
 import Card from "./Card/Card"
-import "./Team.sass"
+import "./Team.scss"
 
 const TeamMembers: TeamMember[] = [
   {

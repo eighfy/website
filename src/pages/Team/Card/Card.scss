@@ -1,0 +1,33 @@
+@use "../../../style/index";
+
+.card {
+  @include index.flex(center, center);
+  flex-direction: column;
+  // padding: 30px
+  background: index.$bg-component;
+  // border-radius: 10px
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: max-content;
+  border: 2px solid index.$team-color;
+  border-radius: 7px;
+  img {
+    object-fit: cover;
+    width: 450px;
+    height: 300px;
+    border-radius: 7px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 20px 20px 20px;
+    @include index.flex(start, center);
+    flex-direction: column;
+    gap: 15px;
+
+    .social {
+      width: 100%;
+      @include index.flex(center, end);
+      gap: 20px;
+    }
+  }
+}

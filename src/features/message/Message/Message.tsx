@@ -2,7 +2,6 @@ import { Alert, Snackbar } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useAppSelector } from "../../../app/hooks"
 import { selectMessages } from "../messageSlice"
-import "./Message.sass"
 
 const Message = () => {
   const messageState = useAppSelector(selectMessages)

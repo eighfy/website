@@ -1,0 +1,8 @@
+@use "../../style/index";
+
+.community-main {
+  @include index.page-main-div;
+  @include index.flex;
+  background: index.$community-bg;
+  color: index.$community-color;
+}

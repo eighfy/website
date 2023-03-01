@@ -1,5 +1,5 @@
 import React from "react"
-import "./Docs.sass"
+import "./Docs.scss"
 
 const Docs = () => {
   return <div className="docs-main">Docs</div>

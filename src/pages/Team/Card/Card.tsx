@@ -4,7 +4,7 @@ import GitHubIcon from "@mui/icons-material/GitHub"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import YouTubeIcon from "@mui/icons-material/YouTube"
-import "./Card.sass"
+import "./Card.scss"
 
 const Card: FC<{ member: TeamMember }> = ({ member }) => {
   return (

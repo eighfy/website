@@ -2,7 +2,7 @@ import classNames from "classnames"
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Authorizated from "../../shared/Authorizated/Authorizated"
-import "./Navigator.sass"
+import "./Navigator.scss"
 
 const Navigator = () => {
   const navigate = useNavigate()

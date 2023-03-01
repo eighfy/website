@@ -3775,10 +3775,10 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-datypes@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/datypes/-/datypes-1.1.7.tgz#97dbce4f8fee1f05c5b433c9e7efabc64f949c6b"
-  integrity sha512-Ir/Uug5yM7rYHX5RqRHdHba+NGGHYvuTzzUjmlioQaI1G4tNwZQdYxCTPYx4EXcfn+Lb4m+wK/FHCdJ/E168tg==
+datypes@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/datypes/-/datypes-1.2.0.tgz#3c2e7ef2057f5c4ca6d6a41045c2a2601723e6bf"
+  integrity sha512-s9Mwybn5sjx3B+heYz9WxOpd0EIciKDCFDsJcwikK+liZTuRJ8Ow0DrWlFJZJIHRYupvvq4kGZWb5UHwWVp7pA==
   dependencies:
     anytool "^1.0.2"
 
