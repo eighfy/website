@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap')
+
+$bg-component: #FFF7F8
+$text-color: #252525
+$navigaton-height: 70px
+$nav-link-color: #585858
+
+$main-bg-gradient-1: #262626
+$main-bg-gradient-2: #1a1a1a
+
+$community-bg: #232124
+$community-color: #02D8FF
+
+$docs-bg: #000000
+$docs-color: #5F99FA
+
+$team-bg: #072027
+$team-color: #5569FF
+
+@mixin flex ($pos: center, $content: center)
+  display: flex
+  align-items: $pos
+  justify-content: $content
+
+@mixin tilt-neon()
+  font-family: 'Tilt Neon', cursive
+
+@mixin input ($size: 10px, $border-color: transparent)
+  padding: $size
+  outline: none
+  border: 0.5px solid $border-color
+  
+  &::placeholder
+    color: silver
+
+@mixin button ($size: 10px, $bg-color: $text-color, $color: $bg-component)
+  @include tilt-neon()
+  padding: $size $size*2
+  text-transform: capitalize
+  letter-spacing: 1px
+  font-size: $size*2
+  background-color: $bg-color
+  color: $color
+  border: none
+  outline: none
+  cursor: pointer
+  filter: drop-shadow(calc($size / 10) calc($size / 5) calc($size / 3.3) $bg-color)
+  transition: background-color .2s ease-out, transform .05s ease-out
+  &:active
+    background-color: lighten($bg-color, 30%)
+    transform: translateY(2px)
+  &:disabled
+    cursor: not-allowed
+
+@mixin text-gradient($pos, $color1, $color2)
+  background-image: linear-gradient($pos, $color1, $color2)
+  color: transparent
+  -webkit-background-clip: text
+  background-clip: text
+
+@mixin page-main-div
+  width: 100vw
+  height: 100vh
+
+@mixin hide-scrollbar
+  &::-webkit-scrollbar
+    display: none
+
+
+html,
+body
+  margin: 0
+  padding: 0
+  @include tilt-neon()
+  scroll-behavior: smooth
+
+
+*, *:before, *:after 
+  box-sizing: border-box
+
+
+.clickable 
+  cursor: pointer
+
+.no-select
+  -webkit-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.logo
+  @extend .no-select

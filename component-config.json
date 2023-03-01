@@ -1,0 +1,8 @@
+{
+  "style": "sass",
+  "component": "function",
+  "fileExtension": "tsx",
+  "sourceDir": "src",
+  "directoryComponent": "yes",
+  "nativeStyle": "file"
+}
