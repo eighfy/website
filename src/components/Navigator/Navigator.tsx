@@ -2,6 +2,7 @@ import classNames from "classnames"
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Authorizated from "../../shared/Authorizated/Authorizated"
+import PersonIcon from "@mui/icons-material/Person"
 import "./Navigator.scss"
 
 const Navigator = () => {
@@ -48,7 +49,9 @@ const Navigator = () => {
       <div className="settings">
         <Authorizated
           insteadOf={<button onClick={() => navigate("/auth")}>Join</button>}
-        ></Authorizated>
+        >
+          <PersonIcon className="clickable icon" />
+        </Authorizated>
       </div>
     </div>
   )

@@ -12,6 +12,10 @@ const Community = React.lazy(() => import("./pages/Community/Community"))
 const Docs = React.lazy(() => import("./pages/Docs/Docs"))
 const Team = React.lazy(() => import("./pages/Team/Team"))
 
+const ResetPassword = React.lazy(
+  () => import("./pages/ResetPassword/ResetPassword")
+)
+
 function App() {
   return (
     <ProviderStore store={store}>
@@ -31,6 +35,14 @@ function App() {
               element={
                 <Suspense>
                   <Auth />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/auth/reset"
+              element={
+                <Suspense>
+                  <ResetPassword />
                 </Suspense>
               }
             />

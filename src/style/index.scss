@@ -74,6 +74,18 @@ $team-color: #5569ff;
   }
 }
 
+@mixin on-mobile() {
+  @media (max-width: 575.98px) {
+    @content;
+  }
+}
+
+@mixin on-tablet() {
+  @media (min-width: 576px) and (max-width: 1199.98px) {
+    @content;
+  }
+}
+
 html,
 body {
   margin: 0;

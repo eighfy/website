@@ -7,6 +7,7 @@ export interface Message {
   time: number
   id: string
   type?: AlertColor
+  onClose?: () => void
 }
 
 interface MessageState {

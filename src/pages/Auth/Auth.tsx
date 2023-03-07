@@ -6,11 +6,20 @@ import {
   IconButton,
   FormControl,
   TextField,
+  Fade,
 } from "@mui/material"
 import { Validator, ValidatorForm } from "@onlydann/validator-form"
+import { AxiosResponse } from "axios"
 import React, { useEffect, useState } from "react"
-import { useAppDispatch } from "../../app/hooks"
+import { useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import {
+  fetchCurrentUser,
+  selectAuth,
+  setTokens,
+} from "../../features/auth/authSlice"
 import { addMessage } from "../../features/message/messageSlice"
+import useFetch from "../../hooks/useFetch"
 import "./Auth.scss"
 
 const validator = new ValidatorForm({
@@ -22,14 +31,16 @@ const validator = new ValidatorForm({
   email: new Validator("", [Validator.email]),
   password: new Validator("", [
     Validator.required,
-    Validator.password(4, { bothCases: true, numbers: true }),
+    Validator.password(4, { bothCases: false, numbers: false, symbols: false }),
   ]),
 })
 
 const Auth = () => {
+  const navigate = useNavigate()
   const [loginMode, setLoginMode] = useState(true)
+  const auth = useAppSelector(selectAuth)
   const dispatch = useAppDispatch()
-
+  const request = useFetch()
   const [showPassword, setShowPassword] = React.useState(false)
   const [typeField, setTypeField] = useState<string>()
 
@@ -63,7 +74,7 @@ const Auth = () => {
         case "password": {
           if (vErrors.password && Object.values(vErrors.password).length) {
             _errors.password =
-              "Password must contain minimum length 4 symbols, lowercase and uppercase letters and numbers"
+              "Password must contain minimum length of 4 symbols, lowercase and uppercase letters and numbers"
           } else _errors.password = null
           break
         }
@@ -85,16 +96,75 @@ const Auth = () => {
   }, [typeField])
 
   function confirm() {
+    const fetchUser = () => dispatch(fetchCurrentUser(auth.access_token))
+
     const sendErr = (content: string) =>
       dispatch(addMessage({ time: 3000, content, type: "error" }))
 
-    dispatch(
-      addMessage({
-        time: 3000,
-        content: "Redirecting",
-        type: "success",
-      })
-    )
+    if (!loginMode) {
+      if (validator.errors.password.minLength)
+        return sendErr("Password length must be at least 4 symbols")
+
+      request(
+        {
+          endpoint: "/api/auth/register",
+          onSuccess(res: AxiosResponse<TokenDto>) {
+            dispatch(setTokens($(res.data)))
+            dispatch(
+              addMessage({
+                time: 3000,
+                content: "Redirecting",
+                type: "success",
+                onClose() {
+                  navigate("/")
+                },
+              })
+            )
+            fetchUser()
+          },
+          onError() {
+            sendErr("Try Again")
+          },
+        },
+        {
+          method: "POST",
+          body: {
+            password: validator.fields.password.currentValue,
+            email: validator.fields.email.currentValue,
+            username: validator.fields.username.currentValue,
+          },
+        }
+      )
+    } else {
+      request(
+        {
+          endpoint: "/api/auth/login",
+          onSuccess(res: AxiosResponse<TokenDto>) {
+            dispatch(setTokens($(res.data)))
+            dispatch(
+              addMessage({
+                time: 3000,
+                content: "Redirecting",
+                type: "success",
+                onClose() {
+                  navigate("/")
+                },
+              })
+            )
+            fetchUser()
+          },
+          onError() {
+            sendErr("Try Again")
+          },
+        },
+        {
+          query: {
+            password: validator.fields.password.currentValue,
+            username: validator.fields.username.currentValue,
+          },
+        }
+      )
+    }
   }
   return (
     <div className="auth-bg">
@@ -193,7 +263,9 @@ const Auth = () => {
         </div>
         <div className="main-container-child buttons">
           <button onClick={() => confirm()}>Confirm</button>
-          <span className="clickable">Forgot your Password?</span>
+          <span onClick={() => navigate("/auth/reset")} className="clickable">
+            Forgot your Password?
+          </span>
         </div>
       </div>
     </div>

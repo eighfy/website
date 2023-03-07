@@ -9,6 +9,7 @@ const Message = () => {
 
   function handleClose() {
     setIsOpen(false)
+    messageState.message?.onClose?.()
   }
 
   useEffect(() => {

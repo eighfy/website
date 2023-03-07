@@ -37,6 +37,13 @@
     flex: 1;
     @include index.flex(center, end);
 
+    .icon {
+      color: $color;
+      &:hover {
+        color: lighten($color, 30%);
+      }
+    }
+
     button {
       @include index.button(8px, lighten($color, 10%), $bg-color);
       font-size: 15px;

@@ -7,3 +7,19 @@ declare interface TeamMember {
     url: string
   }>
 }
+
+declare class TokenDto {
+  readonly user_id: string
+
+  readonly access_token: string
+
+  readonly access_token_expired_in: number
+
+  readonly refresh_token: string
+}
+
+declare class NewAccessTokenDto {
+  readonly access_token: string
+
+  readonly access_token_expired_in: number
+}

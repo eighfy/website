@@ -14,7 +14,7 @@ const Card: FC<{ member: TeamMember }> = ({ member }) => {
         <Typography variant="h3" className="name">
           {member.name}
         </Typography>
-        <Typography color="grey" className="name">
+        <Typography color="grey" className="role">
           {member.role}
         </Typography>
         <div className="social">

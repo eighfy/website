@@ -7,7 +7,7 @@ const Authorizated: FC<{ children?: any; insteadOf?: any }> = ({
   insteadOf,
 }) => {
   const auth = useAppSelector(selectAuth)
-  return !!auth.token ? children : insteadOf || <></>
+  return !!auth.authorizated ? children : insteadOf || <></>
 }
 
 export default Authorizated
